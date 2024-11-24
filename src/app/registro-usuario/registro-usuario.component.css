@@ -1,0 +1,195 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Fondo neutro */
+}
+
+.bg-dark-blue {
+    background-color: #001a33; /* Fondo azul oscuro */
+}
+
+/* Top Bar (Encabezado) */
+.top-bar {
+    background-color: #001a33; /* Fondo azul oscuro */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.top-bar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.top-bar .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.top-bar .search-bar input {
+    border-radius: 20px;
+    padding: 10px 15px;
+    flex-grow: 1;
+    border: none;
+    font-size: 14px;
+}
+
+.top-bar .search-bar input::placeholder {
+    color: #ccc;
+}
+
+.top-bar .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.top-bar .nav-links a {
+    color: white; /* Color de los enlaces */
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.top-bar .nav-links a:hover {
+    color: #007bff; /* Azul claro al pasar el mouse */
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco transparente */
+}
+
+/* Form Container */
+.form-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 5%;
+    position: relative;
+    z-index: 2;
+}
+
+.form-container h2 {
+    color: #001a33;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.form-container p {
+    color: #6c757d;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.form-container .form-group label {
+    font-weight: 500;
+    color: #001a33;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-container .form-group input {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.form-container .form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-container .btn-primary {
+    background-color: #001a33;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.form-container .btn-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Background Image */
+.bg-image {
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://via.placeholder.com/1920x1080'); /* Cambiar por la URL real */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    filter: brightness(70%); /* Oscurece ligeramente la imagen */
+}
+
+/* Footer */
+footer {
+    font-size: 14px;
+    color: white;
+    background-color: #001a33;
+    padding: 10px 0;
+    position: relative;  /* Necesario para posicionar el enlace en la parte inferior derecha */
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: normal;  /* Hace que el enlace no resalte demasiado */
+    font-size: 12px; /* Tamaño más pequeño para que no se vea tan destacado */
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #007bff;  /* Solo cambia a color azul al pasar el ratón */
+}
+
+footer .staff-link {
+    position: absolute; /* Posiciona el enlace fuera del flujo normal */
+    bottom: 10px;  /* Ajusta la distancia del borde inferior */
+    right: 10px;   /* Ajusta la distancia del borde derecho */
+    font-weight: normal;
+    font-size: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .top-bar .search-bar {
+        margin: 10px 0;
+    }
+
+    .form-container {
+        margin-top: 10%;
+    }
+}
