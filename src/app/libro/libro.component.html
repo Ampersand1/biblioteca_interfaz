@@ -1,0 +1,14 @@
+<div class="col-md-3 mb-4">
+    <div class="card">
+      <img [src]="libro.imagen" class="card-img-top" [alt]="libro.Nombre">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ libro.Nombre }}</h5>
+        <p class="badge bg-primary">{{ libro.GeneroPrincipal }} / {{ libro.GeneroSecundario }}</p>
+        <p class="text-muted">Estado: {{ libro.cantidadDisponible > 0 ? 'Disponible' : 'No disponible' }}</p>
+        <p class="text-muted">Cantidad: {{ libro.cantidadDisponible }}</p>
+        <button class="btn btn-warning btn-sm">Modificar</button>
+        <button class="btn btn-danger btn-sm">Eliminar</button>
+      </div>
+    </div>
+  </div>
+  
