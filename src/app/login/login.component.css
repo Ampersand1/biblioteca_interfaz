@@ -135,18 +135,12 @@ body {
 }
 
 /* Background Image */
-.bg-image {
-    width: 100%;
-    height: 100vh;
-    background-image: url('https://via.placeholder.com/1920x1080'); /* Cambiar por la URL real */
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    filter: brightness(70%); /* Oscurece ligeramente la imagen */
-}
+.fullscreen-image {
+    width: 100%;  /* 100% del ancho de la pantalla */
+    height: 30vh; /* 25% de la altura de la ventana (viewport) */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
+    display: block; /* Elimina el espacio debajo de la imagen */
+  }
 
 .aun-no-tienes-cuenta {
     color: #6c757d; /* Color gris */
