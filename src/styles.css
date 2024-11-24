@@ -1,0 +1,102 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .bg-dark-blue {
+    background-color: #001a33;
+  }
+  
+  .top-bar .search-bar input {
+    border-radius: 20px;
+    padding: 10px 15px;
+    flex-grow: 1;
+  }
+  
+  .top-bar .search-bar button {
+    border-radius: 20px;
+  }
+  
+  .navbar .nav-link {
+    font-weight: 500;
+  }
+  
+  .navbar .nav-link:hover {
+    color: #007bff;
+  }
+  
+  /* Hero Section */
+  .hero-section img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero-section h1 {
+    color: #001a33;
+  }
+  
+  /* Cards */
+  .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card .btn-primary {
+    border-radius: 20px;
+  }
+  
+  /* Carousel Controls */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: invert(100%);
+  }
+  
+  /* Footer */
+  footer {
+    font-size: 14px;
+  }
+  .fullscreen-image {
+    width: 100%;  /* 100% del ancho de la pantalla */
+    height: 30vh; /* 25% de la altura de la ventana (viewport) */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin deformarse */
+    display: block; /* Elimina el espacio debajo de la imagen */
+  }
+  
+  .overlay-text {
+    position: absolute;  /* Posiciona el texto sobre la imagen */
+    top: 50%;  /* Centra verticalmente el texto */
+    left: 50%;  /* Centra horizontalmente el texto */
+    transform: translate(-50%, -50%);  /* Ajuste preciso para centrar el texto */
+    color: white;  /* Texto blanco */
+    font-size: 2rem;  /* Tamaño de fuente para el texto */
+    font-weight: bold;  /* Texto en negrita */
+    text-align: center;  /* Centrado del texto */
+    width: 100%;  /* Ancho del contenedor para que el texto se ajuste */
+    padding: 10px;  /* Espaciado alrededor del texto */
+  }
+  /* Define la clase con el nombre de tu elección */
+.work-sans-global {
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400; /* Peso de la fuente, cambia entre 100 y 900 según lo que prefieras */
+    font-style: normal;
+  }
+  
+  /* Aplicamos la fuente a todo el cuerpo de la página */
+  body {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 400; /* Peso regular para el texto */
+    font-style: normal;
+  }
+  
+  /* También podemos aplicar un peso más fuerte (700) a los encabezados */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700; /* Usamos el peso más fuerte para los encabezados */
+  }
+  
