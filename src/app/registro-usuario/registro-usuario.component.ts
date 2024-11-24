@@ -1,7 +1,7 @@
 // src/app/registro-usuario/registro-usuario.component.ts
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
-import { AutenticacionService } from '../autenticacion.service'; 
+import { AutenticacionService } from '../services/autenticacion.service'; 
 
 @Component({
   selector: 'app-registro-usuario',

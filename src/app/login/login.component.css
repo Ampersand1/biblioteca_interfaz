@@ -117,21 +117,23 @@ body {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.form-container .btn-primary {
-    background-color: #001a33;
-    color: white;
-    border: none;
-    border-radius: 20px;
+.btn-login {
+    display: block;
     width: 100%;
-    padding: 10px 0;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
     font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #216AD8, #113264) !important;
+    color: white !important;
+    border: none !important;
+    transition: background 0.3s ease !important;
 }
 
-.form-container .btn-primary:hover {
-    background-color: #007bff;
-    color: white;
+.btn-login:hover {
+    background: linear-gradient(45deg, #004b61, #4c7e9b) !important; /* Hover con nuevo gradiente */
 }
 
 /* Background Image */
