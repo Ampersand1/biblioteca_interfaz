@@ -1,14 +1,15 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http'; // Asegúrate de importar provideHttpClient
+import { provideRouter, RouterModule } from '@angular/router';  // Asegúrate de importar RouterModule
+import { provideHttpClient } from '@angular/common/http';  
 import { routes } from './app.routes';
-import { LibroService } from './services/libro.service';  // Asegúrate de importar tu servicio
+import { LibroService } from './services/libro.service';  
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),   // Asegúrate de que las rutas estén siendo proporcionadas
-    provideHttpClient(),  // Añade el provideHttpClient aquí
-    LibroService  // Asegúrate de incluir tu servicio en los proveedores
+    provideRouter(routes),
+    provideHttpClient(),  
+    LibroService,
+    RouterModule  
   ]
 };

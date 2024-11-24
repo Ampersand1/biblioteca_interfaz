@@ -12,8 +12,9 @@ import { Router } from '@angular/router';
 export class InventarioComponent implements OnInit {
   libros: any[] = [];  // Aquí se almacenarán los libros
 
-  constructor(private libroService: LibroService) {}
-  
+  // Inyectamos el servicio Router en el constructor
+  constructor(private libroService: LibroService, private router: Router) {}
+
   ngOnInit(): void {
     this.obtenerLibros(); // Llama al servicio para obtener los libros cuando el componente se carga
   }
@@ -56,7 +57,9 @@ export class InventarioComponent implements OnInit {
       console.error('Error al eliminar el libro:', error);
     });
   }
-  navigateToHome() {
+
+  // Método para redirigir al home
+  redirectToHome() {
     this.router.navigate(['/']);  // Redirige al home
   }
 }
