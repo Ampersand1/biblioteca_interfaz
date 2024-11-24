@@ -49,62 +49,8 @@
       <div class="container">
         <h2 class="text-center mb-4">Nuestro Inventario</h2>
         <div class="row">
-          <div class="col-md-3 mb-4">
-            <div class="card">
-              <img src="/hp.jpg" class="card-img-top" alt="Harry Potter">
-              <div class="card-body text-center">
-                <h5 class="card-title">Harry Potter y la piedra filosofal</h5>
-                <p class="badge bg-primary">Aventura / Ciencia Ficción</p>
-                <p class="text-muted">Estado: Disponible</p>
-                <p class="text-muted">Cantidad: 10</p>
-                <button class="btn btn-warning btn-sm">Modificar</button>
-                <button class="btn btn-danger btn-sm">Eliminar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 mb-4">
-            <div class="card">
-              <img src="/naruto.jpg" class="card-img-top" alt="Naruto Volumen 4">
-              <div class="card-body text-center">
-                <h5 class="card-title">Naruto Volumen 4</h5>
-                <p class="badge bg-info">Aventura / Cómics y Manga</p>
-                <p class="text-muted">Estado: Disponible</p>
-                <p class="text-muted">Cantidad: 10</p>
-                <button class="btn btn-warning btn-sm">Modificar</button>
-                <button class="btn btn-danger btn-sm">Eliminar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 mb-4">
-            <div class="card">
-              <img src="/oliver.jpg" class="card-img-top" alt="Oliver Twist">
-              <div class="card-body text-center">
-                <h5 class="card-title">Oliver Twist</h5>
-                <p class="badge bg-secondary">Aventura / Infantil</p>
-                <p class="text-muted">Estado: Prestado</p>
-                <p class="text-muted">Cantidad: 10</p>
-                <button class="btn btn-warning btn-sm">Modificar</button>
-                <button class="btn btn-danger btn-sm">Eliminar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 mb-4">
-            <div class="card">
-              <img src="/guerra.jpg" class="card-img-top" alt="Guerra Mundial Z">
-              <div class="card-body text-center">
-                <h5 class="card-title">Guerra Mundial Z</h5>
-                <p class="badge bg-danger">Aventura / Ciencia Ficción</p>
-                <p class="text-muted">Estado: Prestado</p>
-                <p class="text-muted">Cantidad: 10</p>
-                <button class="btn btn-warning btn-sm">Modificar</button>
-                <button class="btn btn-danger btn-sm">Eliminar</button>
-              </div>
-            </div>
-          </div>
-        </div>
+            <app-libro *ngFor="let libro of libros" [libro]="libro"></app-libro>
+          </div>          
         <button class="btn btn-success mt-3">Añadir Referencia</button>
       </div>
     </section>
