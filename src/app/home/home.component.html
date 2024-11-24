@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReadSpace</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./home.component.css">
+</head>
+<body>
+  <div>
+    <!-- Top Bar -->
+    <div class="top-bar bg-dark-blue text-white py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="brand-name fs-4 fw-bold">ReadSpace</div>
+        <div class="search-bar d-flex flex-grow-1 mx-3">
+          <input type="text" class="form-control me-2 flex-grow-1" placeholder="Buscar libros...">
+          <button class="btn btn-light">Buscar</button>
+        </div>
+        <div>
+          <a href="#" class="btn btn-outline-light btn-sm me-2">Registrarse</a>
+          <a href="#" class="btn btn-light btn-sm">Iniciar Sesión</a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Categories Navbar -->
+    <nav class="navbar navbar-expand-lg bg-white shadow">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategories" aria-controls="navbarCategories" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCategories">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Aventura</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Terror</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Cómics y Manga</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Romance</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Misterio</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Artículos</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Infantil</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Ciencia Ficción</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+    <!-- Hero Section -->
+    <div style="position: relative; width: 100%;">
+      <img src="/library.jpg" class="fullscreen-image" alt="Library Image">
+      <div class="overlay-text">
+        La biblioteca donde siempre tendrás una nueva experiencia por conocer
+      </div>
+    </div>
+    
+  
+    <!-- Book Carousel -->
+    <section class="books-section py-5 bg-white">
+      <div class="container">
+        <h2 class="text-center mb-4">Nuestros Libros más Reservados</h2>
+        <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="d-flex justify-content-center">
+                <div class="card mx-2" style="width: 15rem;">
+                  <img src="/hp.jpg" class="card-img-top" alt="Harry Potter">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Harry Potter y la piedra filosofal</h5>
+                    <p class="badge bg-primary">Aventura / Ciencia Ficción</p>
+                    <a href="#" class="btn btn-primary">Reservar</a>
+                  </div>
+                </div>
+                <div class="card mx-2" style="width: 15rem;">
+                  <img src="/oliver.jpg" class="card-img-top" alt="Oliver Twist">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Oliver Twist</h5>
+                    <p class="badge bg-secondary">Aventura / Infantil</p>
+                    <a href="#" class="btn btn-primary">Reservar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="d-flex justify-content-center">
+                <div class="card mx-2" style="width: 15rem;">
+                  <img src="/naruto.jpg" class="card-img-top" alt="Naruto Volumen 6">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Naruto Volumen 6</h5>
+                    <p class="badge bg-success">Aventura / Cómics y Manga</p>
+                    <a href="#" class="btn btn-primary">Reservar</a>
+                  </div>
+                </div>
+                <div class="card mx-2" style="width: 15rem;">
+                  <img src="/guerra.jpg" class="card-img-top" alt="Guerra Mundial Z">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Guerra Mundial Z</h5>
+                    <p class="badge bg-danger">Aventura / Terror</p>
+                    <a href="#" class="btn btn-primary">Reservar</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#bookCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#bookCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="bg-dark-blue text-white text-center py-3">
+      <p>TechNova Soluciones | ReadSpace 2024</p>
+    </footer>
+  </div>
+  
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

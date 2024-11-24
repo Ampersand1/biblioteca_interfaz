@@ -28,7 +28,9 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/app/home/home.component.css",
+              "src/app/inventario/inventario.component.css"
             ],
             "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
@@ -87,12 +89,17 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/app/home/home.component.css",
+              "src/app/inventario/inventario.component.css"
             ],
             "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
