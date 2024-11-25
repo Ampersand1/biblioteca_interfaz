@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LibroService } from '../services/libro.service';
 import { LibroComponent } from "../libro/libro.component";
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-inventario',
@@ -14,11 +13,23 @@ export class InventarioComponent implements OnInit {
   libros: any[] = [];  // Aquí se almacenarán los libros
   showDropdown: boolean = false; // Controla la visibilidad del menú desplegable
 
-  // Inyectamos el servicio Router en el constructor
-  constructor(private libroService: LibroService, private router: Router) {}
+  // Inyectamos el servicio Router y AutenticacionService en el constructor
+  constructor(
+    private libroService: LibroService,
+    private router: Router,
+    private autenticacionService: AutenticacionService // Inyectar el servicio de autenticación
+  ) {}
 
   ngOnInit(): void {
-    this.obtenerLibros(); // Llama al servicio para obtener los libros cuando el componente se carga
+    this.verificarAdmin();  // Verifica si el usuario es admin al cargar el componente
+    this.obtenerLibros();    // Llama al servicio para obtener los libros cuando el componente se carga
+  }
+
+  // Método para verificar si el usuario es administrador
+  verificarAdmin() {
+    if (!this.autenticacionService.isAdmin()) {  // Verifica si el usuario es admin
+      this.router.navigate(['/']);  // Redirige al home si no es admin
+    }
   }
 
   // Método para obtener los libros (GET)

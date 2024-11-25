@@ -1,0 +1,14 @@
+<div class="reservas-container">
+  <div *ngFor="let reserva of reservas$ | async" class="reserva-card">
+    <img
+      *ngIf="reserva.imagenLibro"
+      [src]="reserva.imagenLibro"
+      alt="Imagen del libro"
+      class="libro-imagen"
+    />
+    <h3>{{ reserva.libro }}</h3>
+    <p>Usuario: {{ reserva.usuario }}</p>
+    <p>Tiempo Restante: {{ reserva.tiempoRestante }}</p>
+    <p>Estado: {{ reserva.estado }}</p>
+  </div>
+</div>
