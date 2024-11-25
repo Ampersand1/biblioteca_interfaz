@@ -118,8 +118,8 @@ footer a {
     cursor: pointer;
     margin-left: 10px; /* Separación entre la imagen y el botón */
   }
-/* Estilos menu desplegable*/
-  .dropdown-menu {
+/* Estilos menu desplegable */
+.dropdown-menu {
     display: none; /* Inicialmente oculto */
     position: absolute;
     top: 50px; /* Ajusta la posición vertical según el diseño */

@@ -21,14 +21,13 @@
         </div>
         <!-- Imagen de usuario y botón de menú -->
         <div class="d-flex align-items-center position-relative">
-        <span class="me-2">Hola, Luis</span>
-        <img src="/usuario.png" alt="Imagen de Usuario" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
-        <div class="triangle-btn" (click)="toggleDropdown()"></div> <!-- Triángulo invertido -->
-        <div *ngIf="showDropdown" class="dropdown-menu">
-      <a class="dropdown-item" href="#" (click)="navigateToReservas()">Reservas</a>
-    </div>
-  </div>
-  
+            <span class="me-2">Hola, Luis</span>
+            <img src="/usuario.png" alt="Imagen de Usuario" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+            <div class="triangle-btn" (click)="toggleDropdown()"></div> <!-- Triángulo invertido -->
+            <div [class.show]="showDropdown" class="dropdown-menu">
+              <a class="dropdown-item" href="#" (click)="navigateToReservas()">Reservas</a>
+            </div>
+          </div>
       </div>
     </div>
   
