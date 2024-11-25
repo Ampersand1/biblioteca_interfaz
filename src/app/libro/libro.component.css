@@ -2,17 +2,13 @@
 .card {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    height: 500px;
+    width: 100%;  /* Ajusta para que las cartas ocupen el espacio de la columna */
+    height: 500px; /* Mantén la altura constante */
 }
 
 .card img {
     height: 200px;
     object-fit: cover;
-}
-
-.card .btn-primary {
-    border-radius: 20px;
 }
 
 /* Estilos para los botones en las tarjetas de libros */
@@ -58,4 +54,15 @@
 
 .card .btn-danger:hover {
     background-color: #005d73 !important;
+}
+
+/* Distribuir las tarjetas en filas de 4 */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;  /* Espaciado entre las tarjetas */
+}
+
+.col {
+    margin-bottom: 30px; /* Espaciado vertical entre las cartas */
 }
