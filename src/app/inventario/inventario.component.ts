@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LibroService } from '../services/libro.service';
 import { LibroComponent } from "../libro/libro.component";
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import {AutenticacionService} from "../services/autenticacion.service"
 
 @Component({
   selector: 'app-inventario',
