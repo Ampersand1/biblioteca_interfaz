@@ -14,29 +14,84 @@
     <!-- Top Bar -->
     <div class="top-bar bg-dark-blue text-white py-3">
       <div class="container d-flex justify-content-between align-items-center">
-        <div class="brand-name fs-4 fw-bold" (click)="redirectToHome()">ReadSpace</div>                         
+        <div class="brand-name fs-4 fw-bold" (click)="redirectToHome()">ReadSpace</div>
         <!-- Imagen de usuario y botón de menú -->
         <div class="d-flex align-items-center position-relative">
-            <span class="me-2">Hola, Luis</span>
-            <img src="/usuario.png" alt="Imagen de Usuario" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
-            <div class="triangle-btn" (click)="toggleDropdown()"></div> <!-- Triángulo invertido -->
-            <div [class.show]="showDropdown" class="dropdown-menu">
-              <a class="dropdown-item" href="#" (click)="navigateToReservas()">Reservas</a>
-            </div>
+          <span class="me-2">Hola, estás en el inventario</span>
+          <img src="/usuario.png" alt="Imagen de Usuario" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+          <div class="triangle-btn" (click)="toggleDropdown()"></div> <!-- Triángulo invertido -->
+          <div [class.show]="showDropdown" class="dropdown-menu">
+            <a class="dropdown-item" href="#" (click)="navigateToReservas()">Reservas</a>
           </div>
+        </div>
       </div>
     </div>
-  
-    
   
     <!-- Inventario de Libros -->
     <section class="books-section py-5 bg-light">
       <div class="container">
         <h2 class="text-center mb-4">Nuestro Inventario</h2>
-        <div class="row">
-            <app-libro *ngFor="let libro of libros" [libro]="libro"></app-libro>
-          </div>          
-        <button class="btn btn-success mt-3">Añadir Referencia</button>
+
+        <!-- Botón para agregar libro -->
+        <button class="btn btn-success" (click)="toggleAddBookForm()">Añadir Referencia</button>
+
+        <!-- Formulario para agregar libro -->
+        <div *ngIf="isAddBookFormVisible" class="mt-4">
+          <h3>Nuevo Libro</h3>
+          <form (ngSubmit)="agregarLibro()">
+            <div class="mb-3">
+              <label for="Nombre" class="form-label">Nombre</label>
+              <input type="text" id="Nombre" class="form-control" [(ngModel)]="nuevoLibro.Nombre" name="Nombre" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="GeneroPrincipal" class="form-label">Género Principal</label>
+              <input type="text" id="GeneroPrincipal" class="form-control" [(ngModel)]="nuevoLibro.GeneroPrincipal" name="GeneroPrincipal" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="GeneroSecundario" class="form-label">Género Secundario</label>
+              <input type="text" id="GeneroSecundario" class="form-control" [(ngModel)]="nuevoLibro.GeneroSecundario" name="GeneroSecundario">
+            </div>
+
+            <div class="mb-3">
+              <label for="Autor" class="form-label">Autor</label>
+              <input type="text" id="Autor" class="form-control" [(ngModel)]="nuevoLibro.Autor" name="Autor" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="AnoPubli" class="form-label">Año de Publicación</label>
+              <input type="number" id="AnoPubli" class="form-control" [(ngModel)]="nuevoLibro.AnoPubli" name="AnoPubli">
+            </div>
+
+            <div class="mb-3">
+              <label for="Editorial" class="form-label">Editorial</label>
+              <input type="text" id="Editorial" class="form-control" [(ngModel)]="nuevoLibro.Editorial" name="Editorial" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="ISBN" class="form-label">ISBN</label>
+              <input type="number" id="ISBN" class="form-control" [(ngModel)]="nuevoLibro.ISBN" name="ISBN" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="cantidadDisponible" class="form-label">Cantidad Disponible</label>
+              <input type="number" id="cantidadDisponible" class="form-control" [(ngModel)]="nuevoLibro.cantidadDisponible" name="cantidadDisponible" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="Imagen" class="form-label">Imagen (URL)</label>
+              <input type="text" id="Imagen" class="form-control" [(ngModel)]="nuevoLibro.imagen" name="Imagen">
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Agregar Libro</button>
+          </form>
+        </div>
+
+        <!-- Lista de libros -->
+        <div class="row mt-4">
+          <app-libro *ngFor="let libro of libros" [libro]="libro"></app-libro>
+        </div>
       </div>
     </section>
   

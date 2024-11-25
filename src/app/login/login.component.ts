@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AutenticacionService } from '../services/autenticacion.service'; 
 import { Router } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [FormsModule]
+  imports: [FormsModule, HttpClientModule],
+
 })
 export class LoginComponent {
   
