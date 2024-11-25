@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { LibroService } from '../services/libro.service';
 import { LibroComponent } from "../libro/libro.component";
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-inventario',
   templateUrl: './inventario.component.html',
   styleUrls: ['./inventario.component.css'],
-  imports: [LibroComponent]
+  imports: [LibroComponent, CommonModule]
 })
 export class InventarioComponent implements OnInit {
   libros: any[] = [];  // Aquí se almacenarán los libros
+  showDropdown: boolean = false; // Controla la visibilidad del menú desplegable
 
   // Inyectamos el servicio Router en el constructor
   constructor(private libroService: LibroService, private router: Router) {}
@@ -61,5 +63,16 @@ export class InventarioComponent implements OnInit {
   // Método para redirigir al home
   redirectToHome() {
     this.router.navigate(['/']);  // Redirige al home
+  }
+
+  // Método para alternar el menú desplegable
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown; // Cambia el estado del menú
+  }
+
+  // Método para navegar a la sección de reservas
+  navigateToReservas() {
+    this.router.navigate(['/reservas']); // Redirige a la ruta de reservas
+    this.showDropdown = false; // Cierra el menú desplegable
   }
 }

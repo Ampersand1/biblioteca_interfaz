@@ -108,3 +108,41 @@ footer a {
 .books-section .btn-danger:hover {
     background-color: #005d73 !important;
 }
+/* Estilos para el botón en forma de triángulo */
+.triangle-btn {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white; /* Triángulo invertido */
+    cursor: pointer;
+    margin-left: 10px; /* Separación entre la imagen y el botón */
+  }
+/* Estilos menu desplegable*/
+  .dropdown-menu {
+    display: none; /* Inicialmente oculto */
+    position: absolute;
+    top: 50px; /* Ajusta la posición vertical según el diseño */
+    right: 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    z-index: 10;
+  }
+  
+  .dropdown-menu.show {
+    display: block; /* Muestra el menú cuando la clase 'show' se aplica */
+  }
+  
+  .dropdown-item {
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1f1f1;
+  }
+  
