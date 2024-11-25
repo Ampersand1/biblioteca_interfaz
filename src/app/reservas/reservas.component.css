@@ -1,24 +1,23 @@
 .reserva-card {
-    border: 1px solid #ccc;
-    padding: 16px;
-    border-radius: 8px;
-    margin: 8px;
-    background-color: #f9f9f9;
-  }
-  
-  .libro-imagen {
-    width: 100px;
-    height: 150px;
-    object-fit: cover;
-  }
-  
-  .cumplida {
-    color: green;
-    font-weight: bold;
-  }
-  
-  .no-cumplida {
-    color: red;
-    font-weight: bold;
-  }
-  
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 8px;
+  background-color: #f9f9f9;
+}
+
+.libro-imagen {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.cumplida {
+  color: green;
+  font-weight: bold;
+}
+
+.no-cumplida {
+  color: red;
+  font-weight: bold;
+}
