@@ -4,8 +4,8 @@ body {
   }
   
   .bg-dark-blue {
-    background-color: #001a33;
-  }
+    background: linear-gradient(45deg, #216AD8, #113264) !important; /* Degradado de color en el footer */
+}
   
   .top-bar .search-bar input {
     border-radius: 20px;
