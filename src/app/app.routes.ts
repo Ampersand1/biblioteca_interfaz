@@ -9,9 +9,17 @@ import { AuthGuard } from './auth.guard';  // Importar el guard
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, // Ruta para el Home
+<<<<<<< HEAD
   { path: 'inventario', component: InventarioComponent}, // Ruta protegida
   { path: 'signup', component: RegistroUsuarioComponent }, // Ruta para registro de Usuario
   { path: 'signupadmin', component: RegistroAdminComponent }, // Ruta para registro de Admin
   { path: 'login', component: LoginComponent }, // Ruta para Login
   { path: 'reservas', component: ReservasComponent}, // Ruta protegida
+=======
+  { path: 'inventario', component: InventarioComponent }, // Ruta protegida
+  { path: 'signup', component: RegistroUsuarioComponent }, // Ruta para registro de Usuario
+  { path: 'signupadmin', component: RegistroAdminComponent }, // Ruta para registro de Admin
+  { path: 'login', component: LoginComponent }, // Ruta para Login
+  { path: 'reservas', component: ReservasComponent }, // Ruta protegida
+>>>>>>> main/master
 ];
