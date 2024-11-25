@@ -2,147 +2,150 @@
 body {
     font-family: 'Work Sans', sans-serif;
     font-weight: 400;
-    font-style: normal;
 }
 
 .bg-dark-blue {
-    background: linear-gradient(45deg, #216AD8, #113264) !important; /* Degradado de color en el footer */
+    background: linear-gradient(45deg, #216AD8, #113264);
 }
 
-.top-bar .search-bar input {
-    border-radius: 20px;
-    padding: 10px 15px;
-    flex-grow: 1;
+.top-bar {
+    background-color: #113264;
+    color: white;
 }
 
-.top-bar .search-bar button {
-    border-radius: 20px;
+.top-bar .brand-name {
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.navbar .nav-link {
-    font-weight: 500;
+.top-bar .d-flex {
+    position: relative;
 }
 
-.navbar .nav-link:hover {
-    color: #007bff;
-}
-
-/* Cards */
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    height: 500px;
-}
-
-.card img {
-    height: 200px;
-    object-fit: cover;
-}
-
-.card .btn-primary {
-    border-radius: 20px;
-}
-
-/* Footer */
-footer {
-    font-size: 14px;
-    background: linear-gradient(45deg, #216AD8, #113264) !important; /* Degradado de color en el footer */
-    display: flex;
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
-    padding: 10px 20px;
-}
-
-footer p {
-    margin: 0;
-    text-align: center; /* Centrado horizontal */
-    flex-grow: 1; /* Permite que el texto crezca para ocupar espacio */
-}
-
-footer a {
-    text-decoration: none;
-    text-align: right; /* Alinea 'Staff' a la derecha */
-}
-
-/* Estilos para los botones */
-.books-section .btn-success,
-.books-section .btn-outline-primary,
-.books-section .btn-danger,
-.books-section .btn-warning{
-    display: block;
-    width: 200px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 30px;
-    background: linear-gradient(45deg, #216AD8, #113264) !important;
-    color: white !important;
-    border: none !important;
-    transition: background 0.3s ease !important;
-}
-
-.books-section .btn-success {
-    margin-top: 30px;
-}
-
-.books-section .btn-outline-primary, .btn-warning,
-.books-section .btn-danger {
-    margin-top: 10px;
-    width: 150px;
-    font-size: 14px;
-    border-radius: 20px;
-}
-
-/* Hover effects */
-.books-section .btn-success:hover {
-    background: linear-gradient(45deg, #004b61, #4c7e9b) !important;
-}
-
-.books-section .btn-outline-primary:hover {
-    background-color: #005d73 !important;
-}
-
-.books-section .btn-danger:hover {
-    background-color: #005d73 !important;
-}
-/* Estilos para el botón en forma de triángulo */
 .triangle-btn {
     width: 0;
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid white; /* Triángulo invertido */
+    border-top: 10px solid white;
     cursor: pointer;
-    margin-left: 10px; /* Separación entre la imagen y el botón */
-  }
-/* Estilos menu desplegable */
+    margin-left: 10px;
+}
+
+/* Dropdown menu */
 .dropdown-menu {
-    display: none; /* Inicialmente oculto */
+    display: none;
     position: absolute;
-    top: 50px; /* Ajusta la posición vertical según el diseño */
+    top: 50px;
     right: 0;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     min-width: 150px;
     z-index: 10;
-  }
-  
-  .dropdown-menu.show {
-    display: block; /* Muestra el menú cuando la clase 'show' se aplica */
-  }
-  
-  .dropdown-item {
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
     padding: 10px 20px;
     color: #333;
     text-decoration: none;
     display: block;
-  }
-  
-  .dropdown-item:hover {
+}
+
+.dropdown-item:hover {
     background-color: #f1f1f1;
-  }
-  
+}
+
+/* Books Section */
+.books-section {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+}
+
+.books-section h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.book-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Las tarjetas de libro se alinean en filas */
+    gap: 50px; /* Espacio entre los libros (ajústalo según sea necesario) */
+    justify-items: center; /* Alinea los libros al centro */
+    margin: 0 auto; /* Centra el contenedor */
+}
+
+.books-section .btn-success {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #216AD8, #113264);
+    color: white;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+/* Add Book Form */
+form {
+    display: flex;
+    padding: 10px 50px 20px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form .form-label {
+    font-weight: bold;
+}
+
+form .form-control {
+    border-radius: 5px;
+}
+
+form button {
+    margin-top: 20px;
+}
+
+/* Footer */
+footer {
+    font-size: 14px;
+    background: linear-gradient(45deg, #216AD8, #113264);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}

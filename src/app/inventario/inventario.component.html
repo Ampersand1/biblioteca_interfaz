@@ -31,20 +31,18 @@
     <section class="books-section py-5 bg-light">
       <div class="container">
         <h2 class="text-center mb-4">Nuestro Inventario</h2>
-<<<<<<< HEAD
-        <div class="container">
-          <app-libro [libros]="libros"></app-libro> <!-- Pasa los libros al componente hijo -->
-        </div>        
-        <button class="btn btn-success mt-3">Añadir Referencia</button>
-=======
-
+        <!-- Lista de libros -->
+        <div class="row mt-4 book-row">
+          <app-libro *ngFor="let libro of libros" [libro]="libro"></app-libro>
+        </div>
+      </div>               
         <!-- Botón para agregar libro -->
         <button class="btn btn-success" (click)="toggleAddBookForm()">Añadir Referencia</button>
 
         <!-- Formulario para agregar libro -->
         <div *ngIf="isAddBookFormVisible" class="mt-4">
-          <h3>Nuevo Libro</h3>
           <form (ngSubmit)="agregarLibro()">
+            <h3>Nuevo Libro</h3>
             <div class="mb-3">
               <label for="Nombre" class="form-label">Nombre</label>
               <input type="text" id="Nombre" class="form-control" [(ngModel)]="nuevoLibro.Nombre" name="Nombre" required>
@@ -94,12 +92,7 @@
           </form>
         </div>
 
-        <!-- Lista de libros -->
-        <div class="row mt-4">
-          <app-libro *ngFor="let libro of libros" [libro]="libro"></app-libro>
-        </div>
->>>>>>> origin/master
-      </div>
+        
     </section>
     <div class="modal fade" tabindex="-1" [class.show]="mostrarModalEliminar" [style.display]="mostrarModalEliminar ? 'block' : 'none'">
       <div class="modal-dialog">
@@ -113,7 +106,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
-            <button type="button" class="btn btn-danger" (click)="eliminarLibroConfirmado()">Eliminar</button>
+            <button type="button" class="btn btn-danger" (click)="eliminarLibroConfirmado(libroSeleccionado)">Eliminar</button>
+
           </div>
         </div>
       </div>

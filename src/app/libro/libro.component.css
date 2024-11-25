@@ -1,115 +1,93 @@
-/* Contenedor de los libros */
-.book-row {
-    display: flex;
-    flex-wrap: nowrap;  /* Impide que las cartas se muevan a una nueva fila */
-    gap: 30px;          /* Aumenta el espacio entre las cartas */
-    justify-content: flex-start;
-    overflow-x: auto;   /* Permite hacer scroll horizontal si es necesario */
-    padding: 20px 0;     /* Espaciado superior e inferior */
-  }
-  
-  /* Estilo de cada carta */
-  .book-card {
-    width: 250px;       /* Ancho fijo de cada carta */
-    height: 500px;      /* Altura fija de cada carta */
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    display: flex;
-    flex-direction: column;  /* Elementos dentro de la carta alineados en columna */
-    padding: 10px;
-  }
-  
-  /* Imagen dentro de la carta */
-  .card-img {
-    width: 100%;
-    height: 200px;
-  }
-  
-  /* Cuerpo de la carta */
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    flex-grow: 1; /* Asegura que el cuerpo de la carta ocupe el espacio restante */
-  }
-  
-  /* Título del libro */
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  /* Estilos para los botones */
-  .btn {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    text-align: center;
-    font-size: 16px;
-    background: linear-gradient(45deg, #216AD8, #113264);
-    color: white;
-    border: none;
-    border-radius: 20px;
-    transition: background 0.3s ease;
-  }
-  
-  .btn:hover {
-    background: linear-gradient(45deg, #004b61, #4c7e9b);
-  }
-  
-  /* Estilo para los badges */
-  .badge {
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-  }
-  /* Estilos para el modal de confirmación */
+/* Book Card */
+.book-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 240px; /* Ajusta el ancho de las tarjetas para que ocupen menos espacio */
+  margin: 0; /* Elimina márgenes extra */
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-10px);
+}
+
+.book-card .card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.book-card .card-body {
+  padding: 15px;
+}
+
+.book-card h5 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.book-card .badge {
+  background-color: #216AD8;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.book-card p {
+  margin: 5px 0;
+}
+
+.book-card button {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.book-card .btn-warning {
+  background: linear-gradient(45deg, #216AD8, #113264) !important;
+  color: white;
+  border: none;
+}
+
+.book-card .btn-danger {
+  background: linear-gradient(45deg, #216AD8, #113264) !important;
+  color: white;
+  border: none;
+}
+
+/* Modal Styles */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .modal-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
-  
-  .modal-buttons button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .modal-buttons .btn-danger {
-    background-color: #d9534f;
-    color: white;
-  }
-  
-  .modal-buttons .btn-secondary {
-    background-color: #6c757d;
-    color: white;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border-radius: 5px;
+}

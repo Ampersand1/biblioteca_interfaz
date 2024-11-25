@@ -13,12 +13,12 @@ import { FormsModule } from '@angular/forms';
   imports: [LibroComponent, CommonModule, FormsModule]
 })
 export class InventarioComponent implements OnInit {
-  libros: any[] = []; // Aquí se almacenarán los libros
+  libros: any[] = []; // Lista de libros
   showDropdown: boolean = false; // Controla la visibilidad del menú desplegable
-  mostrarModalEliminar: boolean = false;
-  libroSeleccionado: any = null; // Puede ser un objeto o similar
-  isAddBookFormVisible: boolean = false; // Controla si el formulario de agregar libro se muestra
-  nuevoLibro: any = {  // Inicializamos un objeto vacío para el nuevo libro
+  mostrarModalEliminar: boolean = false; // Controla si se muestra el modal de eliminación
+  libroSeleccionado: any = null; // Libro que se selecciona para eliminar
+  isAddBookFormVisible: boolean = false; // Controla si el formulario de agregar libro está visible
+  nuevoLibro: any = {  // Datos para un nuevo libro
     Nombre: '',
     Autor: '',
     ISBN: '',
@@ -33,95 +33,109 @@ export class InventarioComponent implements OnInit {
   constructor(
     private libroService: LibroService,
     private router: Router,
-    private autenticacionService: AutenticacionService // Inyectar el servicio de autenticación
-  ) { }
+    private autenticacionService: AutenticacionService
+  ) {}
 
   ngOnInit(): void {
-    this.verificarAdmin(); // Verifica si el usuario es admin al cargar el componente
-    this.obtenerLibros(); // Llama al servicio para obtener los libros cuando el componente se carga
+    this.verificarAdmin();
+    this.obtenerLibros();
   }
 
-  // Verifica si el usuario es administrador
   verificarAdmin() {
     if (!this.autenticacionService.isAdmin()) {
-      this.router.navigate(['/']); // Redirige al home si no es admin
+      this.router.navigate(['/']);
     }
   }
 
-  // Obtiene los libros del servicio
   obtenerLibros() {
-    this.libroService.obtenerLibros().subscribe(libros => {
-      this.libros = libros;
-    }, error => {
-      console.error('Error al obtener los libros:', error);
-    });
+    this.libroService.obtenerLibros().subscribe(
+      libros => {
+        this.libros = libros;
+        console.log(this.libros);  // Verifica que los datos estén correctos
+      },
+      error => {
+        console.error('Error al obtener los libros:', error);
+      }
+    );
   }
+  
+  
 
-  // Muestra el modal de confirmación para eliminar un libro
+  // Muestra el modal para confirmar la eliminación
   mostrarModalConfirmacion(libro: any) {
     this.libroSeleccionado = libro;
-    this.mostrarModalEliminar = true; // Activa el modal
-  // Método para agregar un libro (POST)
+    this.mostrarModalEliminar = true;
+  }
+
+  // Agrega un nuevo libro a través del servicio
   agregarLibro() {
     this.libroService.agregarLibro(this.nuevoLibro).subscribe(
-      (response) => {
+      response => {
         console.log('Libro agregado:', response);
-        this.obtenerLibros(); // Actualiza la lista de libros después de agregar
-        this.isAddBookFormVisible = false; // Oculta el formulario
-        this.nuevoLibro = {  // Resetea el formulario
-          Nombre: '',
-          Autor: '',
-          ISBN: '',
-          Editorial: '',
-          GeneroPrincipal: '',
-          GeneroSecundario: '',
-          AnoPubli: null,
-          cantidadDisponible: 1,
-          Imagen: ''
-        };
+        this.obtenerLibros();
+        this.cerrarFormularioAgregar();
       },
-      (error) => {
+      error => {
         console.error('Error al agregar el libro:', error);
-        alert('Error al agregar el libro: ' + (error.error?.message || error.message));  // Mostrar un mensaje de error
+        alert('Error al agregar el libro: ' + (error.error?.message || error.message));
       }
     );
   }
 
-  // Método para alternar la visibilidad del formulario de agregar libro
+  // Alterna la visibilidad del formulario de agregar libro
   toggleAddBookForm() {
-    this.isAddBookFormVisible = !this.isAddBookFormVisible;  // Cambia el estado de visibilidad del formulario
+    this.isAddBookFormVisible = !this.isAddBookFormVisible;
   }
 
-  // Cierra el modal sin eliminar
+  // Cierra el formulario de agregar libro
+  cerrarFormularioAgregar() {
+    this.isAddBookFormVisible = false;
+    this.nuevoLibro = {
+      Nombre: '',
+      Autor: '',
+      ISBN: '',
+      Editorial: '',
+      GeneroPrincipal: '',
+      GeneroSecundario: '',
+      AnoPubli: null,
+      cantidadDisponible: 1,
+      Imagen: ''
+    };
+  }
+
+  // Cierra el modal de eliminación
   cerrarModal() {
     this.mostrarModalEliminar = false;
     this.libroSeleccionado = null; // Resetea el libro seleccionado
   }
+  
 
-  // Elimina el libro seleccionado
-  eliminarLibroConfirmado() {
-    if (this.libroSeleccionado && this.libroSeleccionado._id) {
-      this.libroService.eliminarLibro(this.libroSeleccionado._id).subscribe(response => {
-        console.log('Libro eliminado:', response);
-        this.obtenerLibros(); // Actualiza la lista de libros
-        this.cerrarModal(); // Cierra el modal
-      }, error => {
-        console.error('Error al eliminar el libro:', error);
-      });
+  // Confirma la eliminación del libro seleccionado
+  eliminarLibroConfirmado(libro: any) {
+    if (libro && libro._id) {
+      this.libroService.eliminarLibro(libro._id).subscribe(
+        response => {
+          console.log('Libro eliminado:', response);
+          this.obtenerLibros();  // Recargar los libros después de eliminar
+        },
+        error => {
+          console.error('Error al eliminar el libro:', error);
+          alert('Error al eliminar el libro');
+        }
+      );
     }
   }
+  
+  
 
-  // Redirige al home
   redirectToHome() {
     this.router.navigate(['/']);
   }
 
-  // Alterna el menú desplegable
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
 
-  // Navega a la sección de reservas
   navigateToReservas() {
     this.router.navigate(['/reservas']);
     this.showDropdown = false;

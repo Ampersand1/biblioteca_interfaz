@@ -1,18 +1,16 @@
-<div class="book-row">
-  <div class="book-card" *ngFor="let libro of libros">
-    <img [src]="libro.imagen" [alt]="libro.Nombre" class="card-img">
-    <div class="card-body">
-      <h5 class="card-title">{{ libro.Nombre }}</h5>
-      <p class="badge">{{ libro.GeneroPrincipal }} / {{ libro.GeneroSecundario }}</p>
-      <p>Estado: {{ libro.cantidadDisponible > 0 ? 'Disponible' : 'No disponible' }}</p>
-      <p>Cantidad: {{ libro.cantidadDisponible }}</p>
-      <button class="btn btn-warning">Modificar</button>
-      <button class="btn btn-danger" (click)="confirmarEliminacion(libro)">Eliminar</button>
-    </div>
+<div class="book-card">
+  <img [src]="libro.imagen" [alt]="libro.Nombre" class="card-img">
+  <div class="card-body">
+    <h5 class="card-title">{{ libro.Nombre }}</h5>
+    <p class="badge">{{ libro.GeneroPrincipal }} / {{ libro.GeneroSecundario }}</p>
+    <p>Estado: {{ libro.cantidadDisponible > 0 ? 'Disponible' : 'No disponible' }}</p>
+    <p>Cantidad: {{ libro.cantidadDisponible }}</p>
+    <button class="btn btn-warning">Modificar</button>
+    <button class="btn btn-danger" (click)="confirmarEliminacion(libro)">Eliminar</button>
   </div>
 </div>
 
-<!-- Modal de confirmación para eliminar libro -->
+<!-- Modal de confirmación -->
 <div *ngIf="showModal" class="modal-overlay">
   <div class="modal">
     <h5>¿Estás seguro de que quieres eliminar este libro?</h5>
