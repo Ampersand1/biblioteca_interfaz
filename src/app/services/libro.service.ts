@@ -29,4 +29,5 @@ export class LibroService {
   obtenerLibros(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl); // Devuelve todos los libros
   }
+
 }

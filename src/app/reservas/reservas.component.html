@@ -1,14 +1,49 @@
-<div class="reservas-container">
-  <div *ngFor="let reserva of reservas$ | async" class="reserva-card">
-    <img
-      *ngIf="reserva.imagenLibro"
-      [src]="reserva.imagenLibro"
-      alt="Imagen del libro"
-      class="libro-imagen"
-    />
-    <h3>{{ reserva.libro }}</h3>
-    <p>Usuario: {{ reserva.usuario }}</p>
-    <p>Tiempo Restante: {{ reserva.tiempoRestante }}</p>
-    <p>Estado: {{ reserva.estado }}</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReadSpace - Reservas</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./reservas.component.css">
+</head>
+<body>
+  <div>
+    <!-- Top Bar -->
+    <div class="top-bar bg-dark-blue text-white py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="brand-name fs-4 fw-bold" (click)="redirectToHome()">ReadSpace</div>                         
+        <!-- Imagen de usuario y botón de menú -->
+        <div class="d-flex align-items-center position-relative">
+            <span class="me-2">Hola, Luis</span>
+            <img src="/usuario.png" alt="Imagen de Usuario" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+            <div class="triangle-btn" (click)="toggleDropdown()"></div> <!-- Triángulo invertido -->
+            <div [class.show]="showDropdown" class="dropdown-menu">
+              <a class="dropdown-item" href="#" (click)="navigateToReservas()">Reservas</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  
+    <!-- Sección de Reservas -->
+    <section class="reservas-section py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-4">Mis Reservas</h2>
+        <div class="row"> <!-- Este contenedor se llenará dinámicamente en TypeScript -->
+        </div>          
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="bg-dark-blue text-white text-center py-3 d-flex justify-content-between align-items-center">
+      <p class="mb-0">TechNova Soluciones | ReadSpace 2024</p>
+      <a href="#" class="text-white">Staff</a>
+    </footer>
   </div>
-</div>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
