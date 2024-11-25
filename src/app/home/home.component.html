@@ -25,6 +25,9 @@
         <!-- Condicional: Si el usuario está logueado, muestra el ícono de usuario y el botón de reservas -->
         <div *ngIf="isLoggedIn()">
           <a href="#" class="btn btn-light btn-sm me-2" (click)="goToReservations()">Reservas</a>
+          <a href="/perfil" class="btn btn-light btn-sm me-2" (click)="goToPerfil()">Perfil</a>
+          <a (click)="autenticacionService.logout()" class="btn btn-light btn-sm">Cerrar Sesión</a>
+
           <img src="/user-icon.png" alt="User Icon" class="rounded-circle" width="30" height="30">
         </div>
         <!-- Si el usuario no está logueado, muestra los botones de inicio de sesión y registro -->

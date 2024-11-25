@@ -3,76 +3,87 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
+interface UserInfo {
+  id: string;
+  usuario: string;
+  correo: string;
+  rol: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacionService {
-
   private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  // Registro de usuario
   registrarUsuario(usuarioData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/signup`, usuarioData);
   }
 
-  // Registro de admin
   registrarAdmin(adminData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/signupadmin`, adminData);
   }
 
-  // Login
   login(credentials: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }
 
-  // Guardar el token JWT en localStorage
   guardarToken(token: string): void {
-    localStorage.setItem('access-token', token);
+    localStorage.setItem('accessToken', token);
   }
 
-  // Verificar si el usuario es admin a partir del token
-  isAdmin(): boolean {
-    const token = localStorage.getItem('access-token');
-    if (token) {
-      const decodedToken = this.decodeToken(token);
-      return decodedToken && decodedToken.rol === 'admin';  // Verifica si el rol es admin
-    }
-    return false;
-  }
-
-  // Decodificar el token JWT
   private decodeToken(token: string): any {
-    const payload = token.split('.')[1]; // Decodificar el payload del JWT
-    return JSON.parse(atob(payload));  // Decodifica el token y lo parsea
+    try {
+      const payload = token.split('.')[1];
+      return JSON.parse(atob(payload));
+    } catch (error) {
+      return null;
+    }
   }
 
-  // Método para hacer logout y eliminar el token
-  logout(): void {
-    localStorage.removeItem('access-token');  // Elimina el token del localStorage
-    this.router.navigate(['/login']);  // Redirige al login
+  getCurrentUser(): UserInfo | null {
+    const token = localStorage.getItem('accessToken');
+    if (!token) return null;
+
+    const decodedToken = this.decodeToken(token);
+    if (!decodedToken) return null;
+
+    return {
+      id: decodedToken.id,
+      usuario: decodedToken.usuario,
+      correo: decodedToken.correo,
+      rol: decodedToken.rol
+    };
   }
-   // Método para verificar si el usuario está autenticado
-   isAuthenticated(): boolean {
-    const token = localStorage.getItem('access-token');
-    if (!token) {
-      return false;  // No hay token, no está autenticado
-    }
+
+  isAdmin(): boolean {
+    const user = this.getCurrentUser();
+    return user?.rol === 'admin';
+  }
+
+  logout(): void {
+    localStorage.removeItem('accessToken'); 
+    this.router.navigate(['/login']);
+  }
+
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('accessToken');
+    if (!token) return false;
 
     try {
       const decodedToken = this.decodeToken(token);
-      // Verifica si el token no ha expirado
-      const currentTime = Date.now() / 1000; // Tiempo actual en segundos
+      if (!decodedToken) return false;
+
+      const currentTime = Date.now() / 1000;
       if (decodedToken.exp < currentTime) {
-        this.logout();  // Si el token ha expirado, hacer logout
+        this.logout();
         return false;
       }
-      return true; // El token es válido
+      return true;
     } catch (error) {
-      return false; // Si el token no se puede decodificar, no está autenticado
+      return false;
     }
   }
-
-
 }

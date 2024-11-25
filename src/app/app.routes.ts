@@ -5,6 +5,7 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
 import { LoginComponent } from './login/login.component';
 import { ReservasComponent } from './reservas/reservas.component'; // Importar el componente de reservas
+import { PerfilComponent } from './perfil/perfil.component';
 import { AuthGuard } from './auth.guard';  // Importar el guard
 
 export const routes: Routes = [
@@ -14,4 +15,6 @@ export const routes: Routes = [
   { path: 'signupadmin', component: RegistroAdminComponent }, // Ruta para registro de Admin
   { path: 'login', component: LoginComponent }, // Ruta para Login
   { path: 'reservas', component: ReservasComponent}, // Ruta protegida
+  { path: 'perfil', component: PerfilComponent } //Ruta modificar perfil
+
 ];

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { SearchService } from '../services/busqueda.service';  // Asegúrate de que la ruta sea correcta
 import { CommonModule } from '@angular/common';  // Importar CommonModule
 import { FormsModule } from '@angular/forms';
+import { AutenticacionService } from '../services/autenticacion.service';
+
 
 @Component({
   selector: 'app-home',
@@ -16,17 +18,23 @@ export class HomeComponent {
   mostrarAlerta: boolean = false;  // Variable para mostrar la alerta
   searchQuery: string = '';  // Almacena la consulta de búsqueda
   searchResults: any[] = [];  // Almacena los resultados de la búsqueda
+  autenticacionService: any;
 
   constructor(
     private router: Router,
     private searchService: SearchService  // Inyectamos el servicio de búsqueda
-  ) {}
+  ) { }
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');  // Comprobamos si existe un token en localStorage
   }
-   // Redirige al usuario a la página de reservas
-   goToReservations() {
-    this.router.navigate(['/reservas']);  // Cambia '/reservas' a la ruta correcta
+  // Redirige al usuario a la página de reservas
+  goToReservations() {
+    this.router.navigate(['/reservas']);
+  }
+
+  //Redirige al usuario a la página de modificar perfil
+  goToPerfil() {
+    this.router.navigate(['/perfil'])
   }
 
 

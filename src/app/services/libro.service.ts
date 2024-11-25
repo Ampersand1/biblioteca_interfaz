@@ -19,18 +19,13 @@ export class LibroService {
   }
 
   // Método para agregar un libro
-  agregarLibro(libro: any): Observable<any> {
-    const token = localStorage.getItem('access-token');  // Obtener el token desde el localStorage
-    console.log('Token:', token);
-    if (!token) {
-      console.error('Token no disponible');
-    }
-
-    // Configurar los headers con el token de autenticación
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    // Realizar la solicitud POST para agregar el libro
-    return this.http.post(this.apiUrl, libro, { headers });
+  agregarLibro(token: any, libro: any): Observable<any> { //parametros que deben estar son token y luego los del metodo como tal, que en este caso es el libro
+    return this.http.post(`${this.apiUrl}`, libro, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // Cambiamos a 'Authorization' con el prefijo 'Bearer', ASI DEBE QUEDAR EL RETURN EN LA PARTE DE HEADERS
+      }
+    });
   }
 
 

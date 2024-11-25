@@ -69,7 +69,7 @@ export class InventarioComponent implements OnInit {
 
   // Agrega un nuevo libro a través del servicio
   agregarLibro() {
-    this.libroService.agregarLibro(this.nuevoLibro).subscribe(
+    this.libroService.agregarLibro(localStorage.getItem('accessToken'), this.nuevoLibro).subscribe( //EN EL MÉTODO SE LLAMA DENTRO DE LOS PARAMETROS AL LOCALSTORAGE DE PRIMEROS DE RESTO QUEDA LA LOGICA COMO SEA NECESARIO
       response => {
         console.log('Libro agregado:', response);
         this.obtenerLibros();
