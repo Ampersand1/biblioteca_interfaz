@@ -6,7 +6,20 @@ body {
   .bg-dark-blue {
     background: linear-gradient(45deg, #216AD8, #113264) !important; /* Degradado de color en el footer */
 }
-  
+  /* Estilos para el ícono de usuario */
+.top-bar .user-icon {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+/* Estilos para los botones de inicio de sesión y registro */
+.top-bar .btn-light {
+  margin-right: 10px;
+}
+
   .top-bar .search-bar input {
     border-radius: 20px;
     padding: 10px 15px;

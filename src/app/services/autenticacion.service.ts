@@ -53,4 +53,26 @@ export class AutenticacionService {
     localStorage.removeItem('access-token');  // Elimina el token del localStorage
     this.router.navigate(['/login']);  // Redirige al login
   }
+   // Método para verificar si el usuario está autenticado
+   isAuthenticated(): boolean {
+    const token = localStorage.getItem('access-token');
+    if (!token) {
+      return false;  // No hay token, no está autenticado
+    }
+
+    try {
+      const decodedToken = this.decodeToken(token);
+      // Verifica si el token no ha expirado
+      const currentTime = Date.now() / 1000; // Tiempo actual en segundos
+      if (decodedToken.exp < currentTime) {
+        this.logout();  // Si el token ha expirado, hacer logout
+        return false;
+      }
+      return true; // El token es válido
+    } catch (error) {
+      return false; // Si el token no se puede decodificar, no está autenticado
+    }
+  }
+
+
 }

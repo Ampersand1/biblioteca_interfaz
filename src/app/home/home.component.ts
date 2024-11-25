@@ -21,6 +21,15 @@ export class HomeComponent {
     private router: Router,
     private searchService: SearchService  // Inyectamos el servicio de búsqueda
   ) {}
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');  // Comprobamos si existe un token en localStorage
+  }
+   // Redirige al usuario a la página de reservas
+   goToReservations() {
+    this.router.navigate(['/reservas']);  // Cambia '/reservas' a la ruta correcta
+  }
+
+
 
   // Método para manejar la búsqueda
   onSearch() {
