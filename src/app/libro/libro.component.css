@@ -1,68 +1,115 @@
-/* Cards */
-.card {
+/* Contenedor de los libros */
+.book-row {
+    display: flex;
+    flex-wrap: nowrap;  /* Impide que las cartas se muevan a una nueva fila */
+    gap: 30px;          /* Aumenta el espacio entre las cartas */
+    justify-content: flex-start;
+    overflow-x: auto;   /* Permite hacer scroll horizontal si es necesario */
+    padding: 20px 0;     /* Espaciado superior e inferior */
+  }
+  
+  /* Estilo de cada carta */
+  .book-card {
+    width: 250px;       /* Ancho fijo de cada carta */
+    height: 500px;      /* Altura fija de cada carta */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;  /* Ajusta para que las cartas ocupen el espacio de la columna */
-    height: 500px; /* Mantén la altura constante */
-}
-
-.card img {
-    height: 200px;
-    object-fit: cover;
-}
-
-/* Estilos para los botones en las tarjetas de libros */
-.card .btn-success,
-.card .btn-outline-primary,
-.card .btn-danger,
-.card .btn-warning {
-    display: block;
-    width: 200px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 30px;
-    background: linear-gradient(45deg, #216AD8, #113264) !important;
-    color: white !important;
-    border: none !important;
-    transition: background 0.3s ease !important;
-}
-
-.card .btn-success {
-    margin-top: 30px;
-}
-
-.card .btn-outline-primary,
-.card .btn-warning,
-.card .btn-danger {
-    margin-top: 10px;
-    width: 150px;
-    font-size: 14px;
-    border-radius: 20px;
-}
-
-/* Hover effects */
-.card .btn-success:hover {
-    background: linear-gradient(45deg, #004b61, #4c7e9b) !important;
-}
-
-.card .btn-outline-primary:hover {
-    background-color: #005d73 !important;
-}
-
-.card .btn-danger:hover {
-    background-color: #005d73 !important;
-}
-
-/* Distribuir las tarjetas en filas de 4 */
-.row {
+    background-color: white;
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;  /* Espaciado entre las tarjetas */
-}
-
-.col {
-    margin-bottom: 30px; /* Espaciado vertical entre las cartas */
-}
+    flex-direction: column;  /* Elementos dentro de la carta alineados en columna */
+    padding: 10px;
+  }
+  
+  /* Imagen dentro de la carta */
+  .card-img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  /* Cuerpo de la carta */
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    flex-grow: 1; /* Asegura que el cuerpo de la carta ocupe el espacio restante */
+  }
+  
+  /* Título del libro */
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para los botones */
+  .btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    background: linear-gradient(45deg, #216AD8, #113264);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    transition: background 0.3s ease;
+  }
+  
+  .btn:hover {
+    background: linear-gradient(45deg, #004b61, #4c7e9b);
+  }
+  
+  /* Estilo para los badges */
+  .badge {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  /* Estilos para el modal de confirmación */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .modal-buttons button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .modal-buttons .btn-danger {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  .modal-buttons .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+  

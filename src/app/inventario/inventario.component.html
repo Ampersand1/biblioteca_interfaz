@@ -53,13 +53,29 @@
     <section class="books-section py-5 bg-light">
       <div class="container">
         <h2 class="text-center mb-4">Nuestro Inventario</h2>
-        <div class="row">
-            <app-libro *ngFor="let libro of libros" [libro]="libro"></app-libro>
-          </div>          
+        <div class="container">
+          <app-libro [libros]="libros"></app-libro> <!-- Pasa los libros al componente hijo -->
+        </div>        
         <button class="btn btn-success mt-3">Añadir Referencia</button>
       </div>
     </section>
-  
+    <div class="modal fade" tabindex="-1" [class.show]="mostrarModalEliminar" [style.display]="mostrarModalEliminar ? 'block' : 'none'">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmar Eliminación</h5>
+            <button type="button" class="btn-close" (click)="cerrarModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>¿Estás seguro de que deseas eliminar el libro <strong>{{ libroSeleccionado?.nombre }}</strong>?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+            <button type="button" class="btn btn-danger" (click)="eliminarLibroConfirmado()">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Footer -->
     <footer class="bg-dark-blue text-white text-center py-3 d-flex justify-content-between align-items-center">
       <p class="mb-0">TechNova Soluciones | ReadSpace 2024</p>
