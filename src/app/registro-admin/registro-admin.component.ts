@@ -15,9 +15,9 @@ export class RegistroAdminComponent {
 
   // Método para verificar si las contraseñas coinciden
   isPasswordMatch(): boolean {
-    const password = (document.getElementById('password') as HTMLInputElement).value;
-    const confirmPassword = (document.getElementById('confirmPassword') as HTMLInputElement).value;
-    return password === confirmPassword;
+    const clave = (document.getElementById('clave') as HTMLInputElement).value;
+    const confirmacionClave = (document.getElementById('confirmacionClave') as HTMLInputElement).value;
+    return clave === confirmacionClave;
   }
 
   onSubmit(adminData: any) {
