@@ -40,7 +40,11 @@ export class LibroService {
   eliminarLibro(id: string): Observable<any> {
     const token = localStorage.getItem('access-token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers });
+    return this.http.delete<any>(`http://localhost:3000/api/inventario/borrar/${id}`, { headers });
   }
+  
+  
+  
+  
 
 }
