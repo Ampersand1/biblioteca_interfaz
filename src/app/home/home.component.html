@@ -13,31 +13,40 @@
 
 <body>
   <div>
-  <!-- Top Bar -->
-  <div class="top-bar bg-dark-blue text-white py-3">
-    <div class="container d-flex justify-content-between align-items-center">
-      <div class="brand-name fs-4 fw-bold">ReadSpace</div>
-      <div class="search-bar d-flex flex-grow-1 mx-3">
-        <input type="text" class="form-control me-2 flex-grow-1" [(ngModel)]="searchQuery" placeholder="Buscar libros o autores...">
-        <button class="btn btn-light" (click)="onSearch()">Buscar</button>
-      </div>
-      <div>
-        <!-- Condicional: Si el usuario está logueado, muestra el ícono de usuario y el botón de reservas -->
-        <div *ngIf="isLoggedIn()">
-          <a href="#" class="btn btn-light btn-sm me-2" (click)="goToReservations()">Reservas</a>
-          <a href="/perfil" class="btn btn-light btn-sm me-2" (click)="goToPerfil()">Perfil</a>
-          <a (click)="autenticacionService.logout()" class="btn btn-light btn-sm">Cerrar Sesión</a>
-
-          <img src="/user-icon.png" alt="User Icon" class="rounded-circle" width="30" height="30">
+    <!-- Top Bar -->
+    <div class="top-bar bg-dark-blue text-white py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="brand-name fs-4 fw-bold" (click)="redirectToHome()">ReadSpace</div>
+        <div class="search-bar d-flex flex-grow-1 mx-3">
+          <input type="text" class="form-control me-2 flex-grow-1" [(ngModel)]="searchQuery"
+            placeholder="Buscar libros o autores...">
+          <button class="btn btn-light" (click)="onSearch()">Buscar</button>
         </div>
-        <!-- Si el usuario no está logueado, muestra los botones de inicio de sesión y registro -->
-        <div *ngIf="!isLoggedIn()">
-          <a href="/signup" class="btn btn-outline-light btn-sm me-2">Registrarse</a>
-          <a href="/login" class="btn btn-light btn-sm">Iniciar Sesión</a>
+        <div>
+          <!-- Condicional: Si el usuario está logueado, muestra el ícono de usuario y el botón de reservas -->
+          <div *ngIf="isLoggedIn()">
+            <div class="d-flex align-items-center position-relative">
+              <span class="me-2">Hola, bienvenido</span>
+              <img src="/usuario.png" alt="Imagen de Usuario" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+              <div class="triangle-btn" (click)="toggleDropdown()"></div> <!-- Triángulo invertido -->
+              <div [class.show]="showDropdown" class="dropdown-menu">
+                <a class="dropdown-item" href="#" (click)="goToReservations()">Reservas</a>
+                <a class="dropdown-item" href="/perfil" (click)="goToPerfil()">Perfil</a>
+                <a class="dropdown-item" (click)="autenticacionService.logout()">Cerrar Sesión</a>
+    
+    
+              </div>
+            </div>
+
+          </div>
+          <!-- Si el usuario no está logueado, muestra los botones de inicio de sesión y registro -->
+          <div *ngIf="!isLoggedIn()">
+            <a href="/signup" class="btn btn-outline-light btn-sm me-2">Registrarse</a>
+            <a href="/login" class="btn btn-light btn-sm">Iniciar Sesión</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
     <!-- Hero Section -->
     <div style="position: relative; width: 100%;">

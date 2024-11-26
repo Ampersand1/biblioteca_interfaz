@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class RegistroUsuarioComponent {
 
   constructor(
-    private autenticacionService: AutenticacionService,
+    public autenticacionService: AutenticacionService,
     private router: Router  // Inyectar Router para redirección
   ) { }
 
@@ -43,6 +43,9 @@ export class RegistroUsuarioComponent {
         console.error('Error al registrar usuario', error);
       }
     );
+  }
+  redirectToHome() {
+    this.router.navigate(['/']);  // Redirige al home
   }
 
   // Método para redirigir al home

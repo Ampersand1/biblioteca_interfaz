@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AutenticacionService } from '../services/autenticacion.service'; 
+import { AutenticacionService } from '../services/autenticacion.service';
 import { Router } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -13,11 +13,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 })
 export class LoginComponent {
-  
+
   constructor(
     private autenticacionService: AutenticacionService,
     private router: Router  // Inyectar Router para la navegación
-  ) {}
+  ) { }
 
   // Función para redirigir según el rol del usuario
   redirectToHomeOrInventory() {
@@ -27,13 +27,16 @@ export class LoginComponent {
       this.router.navigate(['/']);  // Redirigir al home para usuarios
     }
   }
+  redirectToHome() {
+    this.router.navigate(['/']);  // Redirige al home
+  }
 
   // Función de inicio de sesión
   onSubmit(loginData: any) {
     this.autenticacionService.login(loginData).subscribe(
       (response) => {
         console.log('Sesión iniciada con éxito', response);
-        
+
         // Guardar el token en localStorage
         this.autenticacionService.guardarToken(response.token); // Suponiendo que el token se llama 'token'
 

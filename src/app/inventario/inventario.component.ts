@@ -33,7 +33,7 @@ export class InventarioComponent implements OnInit {
   constructor(
     private libroService: LibroService,
     private router: Router,
-    private autenticacionService: AutenticacionService
+    public autenticacionService: AutenticacionService
   ) {}
 
   ngOnInit(): void {
@@ -129,7 +129,7 @@ export class InventarioComponent implements OnInit {
   
 
   redirectToHome() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/inventario']);
   }
 
   toggleDropdown() {

@@ -18,11 +18,13 @@ export class HomeComponent {
   mostrarAlerta: boolean = false;  // Variable para mostrar la alerta
   searchQuery: string = '';  // Almacena la consulta de búsqueda
   searchResults: any[] = [];  // Almacena los resultados de la búsqueda
-  autenticacionService: any;
+  showDropdown: boolean = false; // Controla la visibilidad del menú desplegable
+
 
   constructor(
     private router: Router,
-    private searchService: SearchService  // Inyectamos el servicio de búsqueda
+    private searchService: SearchService,
+    public autenticacionService: AutenticacionService  // Inyectamos el servicio de búsqueda
   ) { }
   isLoggedIn(): boolean {
     return !!localStorage.getItem('accessToken');  // Comprobamos si existe un token en localStorage
@@ -37,7 +39,13 @@ export class HomeComponent {
     this.router.navigate(['/perfil'])
   }
 
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
 
+  redirectToHome() {
+    this.router.navigate(['/']);
+  }
 
   // Método para manejar la búsqueda
   onSearch() {

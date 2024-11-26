@@ -23,6 +23,8 @@
           <div [class.show]="showDropdown" class="dropdown-menu">
             <a class="dropdown-item" href="#" (click)="navigateToReservas()">Reservas</a>
             <a class="dropdown-item" href="/perfil" (click)="goToPerfil()">Perfil</a>
+            <a class="dropdown-item" (click)="autenticacionService.logout()">Cerrar Sesión</a>
+
 
           </div>
         </div>
