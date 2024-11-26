@@ -135,6 +135,9 @@ export class InventarioComponent implements OnInit {
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
+  goToPerfil() {
+    this.router.navigate(['/perfil'])
+  }
 
   navigateToReservas() {
     this.router.navigate(['/reservas']);
