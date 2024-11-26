@@ -98,24 +98,6 @@
 
         
     </section>
-    <div class="modal fade" tabindex="-1" [class.show]="mostrarModalEliminar" [style.display]="mostrarModalEliminar ? 'block' : 'none'">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Confirmar Eliminación</h5>
-            <button type="button" class="btn-close" (click)="cerrarModal()" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>¿Estás seguro de que deseas eliminar el libro <strong>{{ libroSeleccionado?.nombre }}</strong>?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
-            <button type="button" class="btn btn-danger" (click)="eliminarLibroConfirmado(libroSeleccionado)">Eliminar</button>
-
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- Footer -->
     <footer class="bg-dark-blue text-white text-center py-3 d-flex justify-content-between align-items-center">
       <p class="mb-0">TechNova Soluciones | ReadSpace 2024</p>
