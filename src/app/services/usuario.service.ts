@@ -23,4 +23,12 @@ export class UsuarioService {
       }
     });
   }
+  eliminarCuenta(token: any): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/usuarios`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
 }

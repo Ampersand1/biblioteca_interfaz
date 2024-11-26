@@ -77,4 +77,31 @@ export class PerfilComponent implements OnInit {
       }
     );
   }
+
+  confirmarEliminacion() {
+    const confirmar = confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible.');
+    if (confirmar) {
+      this.eliminarCuenta();
+    }
+  }
+
+  // Llamada al servicio para eliminar la cuenta
+  eliminarCuenta() {
+    this.loading = true;
+    this.error = '';
+    this.mensaje = '';
+
+    this.usuarioService.eliminarCuenta(localStorage.getItem('accessToken')).subscribe(
+      (response) => {
+        this.mensaje = 'Cuenta eliminada con éxito';
+        this.loading = false;
+        this.autenticacionService.logout(); // Si la cuenta es eliminada, se cierra la sesión
+        this.router.navigate(['/']); // Redirige al home
+      },
+      (error) => {
+        this.error = error.error.error || 'Error al eliminar la cuenta';
+        this.loading = false;
+      }
+    );
+  }
 }
