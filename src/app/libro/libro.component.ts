@@ -10,43 +10,37 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class LibroComponent {
-  @Input() libro: any = {}; // Cambiado de array a un solo objeto
+  @Input() libro: any = {}; // Recibe un libro como objeto
   @Output() eliminar: EventEmitter<string> = new EventEmitter(); // Emite el ID del libro a eliminar
 
-  libroAEliminar: any = null; // Mantiene el libro que se está intentando eliminar
-  showModal: boolean = false; // Controla la visibilidad del modal
+  eliminando: boolean = false; // Controla la visibilidad del formulario de confirmación
 
   constructor(private libroService: LibroService) {}
 
-  // Función para abrir el modal con el libro a eliminar
-  confirmarEliminacion(libro: any) {
-    this.libroAEliminar = libro;
-    this.showModal = true; // Muestra el modal
+  // Muestra el formulario de confirmación
+  mostrarFormularioEliminacion() {
+    this.eliminando = true;
   }
 
-  // Función para cancelar la eliminación
+  // Oculta el formulario de confirmación
   cancelarEliminacion() {
-    this.showModal = false;
-    this.libroAEliminar = null;
+    this.eliminando = false;
   }
 
-  // Función para confirmar la eliminación
+  // Ejecuta la eliminación del libro
   eliminarLibro() {
-    if (this.libroAEliminar && this.libroAEliminar._id) {
-      this.libroService.eliminarLibro(this.libroAEliminar._id).subscribe(
-        response => {
-          console.log('Libro eliminado:', response);
-          this.eliminar.emit(this.libroAEliminar._id); // Notifica al componente padre
-          this.cancelarEliminacion(); // Cierra el modal
-        },
-        error => {
-          console.error('Error al eliminar el libro:', error);
-        }
-      );
-    } else {
-      console.error('No se encontró el ID del libro para eliminar.');
-    }
+    this.libroService.eliminarLibro(this.libro._id).subscribe(
+      response => {
+        alert('Libro eliminado con éxito');
+        this.eliminar.emit(this.libro._id);
+        this.eliminando = false;
+        window.location.reload();
+      },
+      error => {
+        console.error('Error al eliminar el libro:', error);
+        alert('Hubo un error al intentar eliminar el libro. Verifique el token o el servidor.');
+      }
+    );
   }
   
 }
-

@@ -6,15 +6,15 @@
     <p>Estado: {{ libro.cantidadDisponible > 0 ? 'Disponible' : 'No disponible' }}</p>
     <p>Cantidad: {{ libro.cantidadDisponible }}</p>
     <button class="btn btn-warning">Modificar</button>
-    <button class="btn btn-danger" (click)="confirmarEliminacion(libro)">Eliminar</button>
-  </div>
-</div>
+    <button 
+      class="btn btn-danger" 
+      *ngIf="!eliminando" 
+      (click)="mostrarFormularioEliminacion()">Eliminar
+    </button>
 
-<!-- Modal de confirmación -->
-<div *ngIf="showModal" class="modal-overlay">
-  <div class="modal">
-    <h5>¿Estás seguro de que quieres eliminar este libro?</h5>
-    <div class="modal-buttons">
+    <!-- Formulario de confirmación -->
+    <div *ngIf="eliminando" class="confirmacion-form">
+      <p>¿Estás seguro de que quieres eliminar este libro?</p>
       <button class="btn btn-danger" (click)="eliminarLibro()">Sí, eliminar</button>
       <button class="btn btn-secondary" (click)="cancelarEliminacion()">Cancelar</button>
     </div>
