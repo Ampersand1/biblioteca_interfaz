@@ -25,7 +25,7 @@ export class HomeComponent {
     private searchService: SearchService  // Inyectamos el servicio de búsqueda
   ) { }
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');  // Comprobamos si existe un token en localStorage
+    return !!localStorage.getItem('accessToken');  // Comprobamos si existe un token en localStorage
   }
   // Redirige al usuario a la página de reservas
   goToReservations() {
@@ -58,7 +58,7 @@ export class HomeComponent {
 
   // Método para reservar un libro
   reservarLibro() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
     if (!token) {
       this.mostrarAlerta = true;  // Muestra el mensaje si el usuario no está logueado
     } else {
