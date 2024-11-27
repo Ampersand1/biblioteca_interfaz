@@ -40,6 +40,7 @@ export class LibroComponent {
       response => {
         console.log('Libro actualizado:', response);
         this.editando = false; // Finalizamos la edición
+        window.location.reload();
       },
       error => {
         console.error('Error al actualizar el libro:', error);
@@ -68,7 +69,7 @@ export class LibroComponent {
       response => {
         console.log('Libro eliminado:', response);
         this.eliminando = false; // Finalizamos el proceso de eliminación
-        // Aquí podrías agregar la lógica para redirigir o actualizar la lista de libros
+        window.location.reload();
       },
       error => {
         console.error('Error al eliminar el libro:', error);
