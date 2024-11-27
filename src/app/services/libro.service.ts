@@ -38,7 +38,9 @@ export class LibroService {
     })
   });
 }
-
+obtenerLibrosAleatorios(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/random`);
+}
 // Método para eliminar un libro
 eliminarLibro(token: any, id: string): Observable<any> {
   return this.http.delete(`${this.apiUrl}/${id}`, {
