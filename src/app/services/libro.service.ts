@@ -29,22 +29,27 @@ export class LibroService {
   }
 
 
-  // Método para actualizar un libro
-  actualizarLibro(id: string, libro: any): Observable<any> {
-    const token = localStorage.getItem('access-token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.put<any>(`${this.apiUrl}/${id}`, libro, { headers });
-  }
+ // Método para actualizar un libro
+ actualizarLibro(token: any, id: string, libro: any): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${id}`, libro, {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}` // Enviamos el token para autorización
+    })
+  });
+}
 
-  // Método para eliminar un libro
-  eliminarLibro(id: string): Observable<any> {
-    const token = localStorage.getItem('access-token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete<any>(`http://localhost:3000/api/inventario/borrar/${id}`, { headers });
-  }
-  
-  
-  
-  
+// Método para eliminar un libro
+eliminarLibro(token: any, id: string): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/${id}`, {
+    headers: new HttpHeaders({
+      'Authorization': `Bearer ${token}` // Enviamos el token para autorización
+    })
+  });
+}
 
+// Método para obtener un libro por ID
+obtenerLibroPorId(id: string): Observable<any> {
+  return this.http.get(`${this.apiUrl}/${id}`);
+}
 }
