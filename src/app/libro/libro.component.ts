@@ -20,62 +20,70 @@ export class LibroComponent {
 
   constructor(private libroService: LibroService) {}
 
-  // Muestra el formulario de modificación
-  mostrarFormularioEdicion() {
-    this.libroOriginal = { ...this.libro }; // Guarda el libro original antes de editar
-    this.editando = true;
-  }
-
-  // Cancela la edición y restaura el estado original
-  cancelarEdicion() {
-    this.libro = { ...this.libroOriginal }; // Restaura el libro original
-    this.editando = false;
-  }
-
-  // Ejecuta la actualización del libro
-  actualizarLibro() {
-    if (JSON.stringify(this.libro) === JSON.stringify(this.libroOriginal)) {
-      alert('No se hicieron cambios en el libro.');
-      return;
-    }
-
-    this.libroService.actualizarLibro(this.libro._id, this.libro).subscribe(
+  // Método para iniciar el proceso de edición
+  editarLibro(libroId: string) {
+    this.libroService.obtenerLibroPorId(libroId).subscribe(
       response => {
-        alert('Libro actualizado con éxito');
-        this.actualizar.emit(this.libro); // Emite el libro actualizado al componente padre
-        this.editando = false;
+        this.libro = response; // Rellenamos los campos del libro con los datos obtenidos
+        this.editando = true; // Activamos el formulario de edición
+      },
+      error => {
+        console.error('Error al obtener el libro:', error);
+      }
+    );
+  }
+
+  // Método para actualizar el libro
+  actualizarLibro() {
+    const token = localStorage.getItem('accessToken');
+    this.libroService.actualizarLibro(token, this.libro._id, this.libro).subscribe(
+      response => {
+        console.log('Libro actualizado:', response);
+        this.editando = false; // Finalizamos la edición
         window.location.reload();
       },
       error => {
         console.error('Error al actualizar el libro:', error);
-        alert('Hubo un error al intentar actualizar el libro.');
+        alert('Error al actualizar el libro: ' + (error.error?.message || error.message));
       }
     );
   }
 
-  // Muestra el formulario de confirmación para eliminar
+  // Método para mostrar el formulario de edición
+  mostrarFormularioEdicion() {
+    this.editando = true; // Mostramos el formulario de edición
+  }
+
+  // Método para mostrar el formulario de eliminación
   mostrarFormularioEliminacion() {
-    this.eliminando = true;
+    if (confirm('¿Estás seguro de que deseas eliminar este libro?')) {
+      this.eliminarLibro();
+    }
   }
 
-  // Cancela la eliminación
-  cancelarEliminacion() {
-    this.eliminando = false;
-  }
-
-  // Ejecuta la eliminación del libro
+  // Método para eliminar el libro
   eliminarLibro() {
-    this.libroService.eliminarLibro(this.libro._id).subscribe(
+    this.eliminando = true; // Indicamos que estamos eliminando el libro
+    const token = localStorage.getItem('accessToken');
+    this.libroService.eliminarLibro(token, this.libro._id).subscribe(
       response => {
-        alert('Libro eliminado con éxito');
-        this.eliminar.emit(this.libro._id);
-        this.eliminando = false;
+        console.log('Libro eliminado:', response);
+        this.eliminando = false; // Finalizamos el proceso de eliminación
         window.location.reload();
       },
       error => {
         console.error('Error al eliminar el libro:', error);
-        alert('Hubo un error al intentar eliminar el libro. Verifique el token o el servidor.');
+        alert('Error al eliminar el libro: ' + (error.error?.message || error.message));
+        this.eliminando = false;
       }
     );
+  }
+
+  cancelarEdicion() {
+    this.editando = false; // Cancela la edición y oculta el formulario
+  }
+  cancelarEliminacion() {
+    this.eliminando = false; // Cancela el proceso de eliminación
+    console.log('Eliminación cancelada');
   }
 }

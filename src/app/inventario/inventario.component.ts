@@ -103,31 +103,6 @@ export class InventarioComponent implements OnInit {
     };
   }
 
-  // Cierra el modal de eliminación
-  cerrarModal() {
-    this.mostrarModalEliminar = false;
-    this.libroSeleccionado = null; // Resetea el libro seleccionado
-  }
-  
-
-  // Confirma la eliminación del libro seleccionado
-  eliminarLibroConfirmado(libro: any) {
-    if (libro && libro._id) {
-      this.libroService.eliminarLibro(libro._id).subscribe(
-        response => {
-          console.log('Libro eliminado:', response);
-          this.obtenerLibros();  // Recargar los libros después de eliminar
-        },
-        error => {
-          console.error('Error al eliminar el libro:', error);
-          alert('Error al eliminar el libro');
-        }
-      );
-    }
-  }
-  
-  
-
   redirectToHome() {
     this.router.navigate(['/inventario']);
   }
