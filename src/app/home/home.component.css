@@ -6,6 +6,44 @@ body {
   .bg-dark-blue {
     background: linear-gradient(45deg, #216AD8, #113264) !important; /* Degradado de color en el footer */
 }
+/* home.component.css */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.modal-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-footer button {
+  padding: 8px 15px;
+  font-size: 1rem;
+}
+
   /* Estilos para el ícono de usuario */
 .top-bar .user-icon {
   border-radius: 50%;

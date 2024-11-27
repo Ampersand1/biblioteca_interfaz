@@ -27,14 +27,15 @@
           <div *ngIf="isLoggedIn()">
             <div class="d-flex align-items-center position-relative">
               <span class="me-2">Hola, bienvenido</span>
-              <img src="/usuario.png" alt="Imagen de Usuario" class="img-fluid rounded-circle" style="width: 40px; height: 40px;">
+              <img src="/usuario.png" alt="Imagen de Usuario" class="img-fluid rounded-circle"
+                style="width: 40px; height: 40px;">
               <div class="triangle-btn" (click)="toggleDropdown()"></div> <!-- Triángulo invertido -->
               <div [class.show]="showDropdown" class="dropdown-menu">
-                <a class="dropdown-item" href="#" (click)="goToReservations()">Reservas</a>
+                <a class="dropdown-item" href="/reservas" (click)="goToReservations()">Reservas</a>
                 <a class="dropdown-item" href="/perfil" (click)="goToPerfil()">Perfil</a>
                 <a class="dropdown-item" (click)="autenticacionService.logout()">Cerrar Sesión</a>
-    
-    
+
+
               </div>
             </div>
 
@@ -73,12 +74,29 @@
               <h5 class="card-title">{{ book.Nombre }}</h5>
               <p class="card-text">Autor: {{ book.Autor }}</p>
               <p class="card-text">Editorial: {{ book.Editorial }}</p>
-              <a href="#" class="btn btn-primary" (click)="reservarLibro()">Reservar</a>
+              <button class="btn btn-primary" (click)="mostrarModal(book)">Reservar</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal-backdrop" *ngIf="isModalVisible" (click)="cerrarModal()">
+      <div class="modal-container" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h4 class="modal-title">¿Desea hacer la reserva de "{{ libroSeleccionado?.Nombre }}"?</h4>
+        </div>
+        <div class="modal-body">
+          <p>¿Está seguro de que desea hacer la reserva del libro "{{ libroSeleccionado?.Nombre }}"?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+          <button class="btn btn-primary" (click)="confirmarReserva()">Hacer Reserva</button>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Mensaje si no hay resultados -->
     <div *ngIf="searchResults.length === 0 && searchQuery" class="container py-4">
@@ -87,48 +105,28 @@
 
     <!-- Book Carousel -->
     <section class="books-section py-5 bg-white">
-      <div class="container">
-        <h2 class="text-center mb-4">Nuestros Libros más Reservados</h2>
+      <!-- Book Carousel -->
+      <section class="books-section py-5 bg-white">
         <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div class="carousel-item active">
+            <div class="carousel-item" *ngFor="let pair of groupBooks(librosAleatorios, 2); let i = index"
+              [class.active]="i === 0">
               <div class="d-flex justify-content-center">
-                <div class="card mx-2" style="width: 15rem;">
-                  <img src="/hp.jpg" class="card-img-top" alt="Harry Potter">
+                <!-- Recorremos el grupo de libros -->
+                <div *ngFor="let libro of pair" class="card mx-2" style="width: 15rem;">
+                  <img [src]="libro.imagen || '/default-image.jpg'" class="card-img-top" [alt]="libro.Nombre" />
                   <div class="card-body text-center">
-                    <h5 class="card-title">Harry Potter y la piedra filosofal</h5>
-                    <p class="badge bg-primary">Aventura / Ciencia Ficción</p>
-                    <a href="#" class="btn btn-primary" (click)="reservarLibro()">Reservar</a>
+                    <h5 class="card-title">{{ libro.Nombre }}</h5>
+                    <p class="badge bg-primary">{{ libro.GeneroPrincipal }}</p>
+                    <div>
+                      <!-- Llama al método `mostrarModal` pasando el libro -->
+                      <button class="btn btn-primary mt-2" (click)="mostrarModal(libro)">
+                        Reservar
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div class="card mx-2" style="width: 15rem;">
-                  <img src="/oliver.jpg" class="card-img-top" alt="Oliver Twist">
-                  <div class="card-body text-center">
-                    <h5 class="card-title">Oliver Twist</h5>
-                    <p class="badge bg-secondary">Aventura / Infantil</p>
-                    <a href="#" class="btn btn-primary" (click)="reservarLibro()">Reservar</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="d-flex justify-content-center">
-                <div class="card mx-2" style="width: 15rem;">
-                  <img src="/naruto.jpg" class="card-img-top" alt="Naruto Volumen 6">
-                  <div class="card-body text-center">
-                    <h5 class="card-title">Naruto Volumen 6</h5>
-                    <p class="badge bg-success">Aventura / Cómics y Manga</p>
-                    <a href="#" class="btn btn-primary" (click)="reservarLibro()">Reservar</a>
-                  </div>
-                </div>
-                <div class="card mx-2" style="width: 15rem;">
-                  <img src="/guerra.jpg" class="card-img-top" alt="Guerra Mundial Z">
-                  <div class="card-body text-center">
-                    <h5 class="card-title">Guerra Mundial Z</h5>
-                    <p class="badge bg-danger">Aventura / Terror</p>
-                    <a href="#" class="btn btn-primary" (click)="reservarLibro()">Reservar</a>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -141,7 +139,8 @@
             <span class="visually-hidden">Siguiente</span>
           </button>
         </div>
-      </div>
+      </section>
+
     </section>
 
     <!-- Footer -->

@@ -3,83 +3,70 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class ReservasService {
-  private apiUrl = 'http://localhost:3000/api/reservas'; // URL base de la API de reservas
+export class ReservaService {
+  private apiUrl = 'http://localhost:3000/api/reservas';
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Obtener todas las reservas (solo para administradores).
-   * Este endpoint devuelve una lista de todas las reservas con detalles.
-   */
-  getAllReservas(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  // 1. Crear una reserva
+  crearReserva(token: any, inventarioId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${inventarioId}`, null, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
-  /**
-   * Marcar una reserva como cumplida (solo para administradores).
-   * @param reservaId ID de la reserva a actualizar.
-   */
-  markReservaCumplida(reservaId: string): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/${reservaId}/cumplida`, {});
+  // 2. Eliminar una reserva
+  eliminarReserva(token: any, reservaId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${reservaId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
-  /**
-   * Obtener reservas por nombre de usuario (solo para administradores).
-   * @param nombreUsuario Nombre del usuario para buscar sus reservas.
-   */
-  getReservasByUsuario(nombreUsuario: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/usuario/${nombreUsuario}`);
+  // 3. Ver todas las reservas (para el administrador)
+  obtenerReservas(token: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
-  /**
-   * Crear una reserva.
-   * Este endpoint crea una nueva reserva para un libro específico.
-   * @param inventarioId ID del libro que se desea reservar.
-   */
-  createReserva(inventarioId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${inventarioId}`, {});
+  // 4. Marcar una reserva como cumplida
+  marcarCumplida(token: any, reservaId: string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${reservaId}/cumplida`, null, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
-  /**
-   * Obtener las reservas del usuario actual (autenticado).
-   * Este endpoint devuelve las reservas del usuario basándose en su token.
-   */
-  getMisReservas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/mis-reservas`);
+  // 5. Ver reservas según el nombre del usuario (para el administrador)
+  buscarReservasPorUsuario(token: any, nombreUsuario: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/usuario/${nombreUsuario}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
-  /**
-   * Eliminar una reserva por su ID.
-   * @param reservaId ID de la reserva que se desea eliminar.
-   */
-  deleteReserva(reservaId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${reservaId}`);
-  }
-
-  // Confirmar la reserva
-  confirmarReserva(inventarioId: string): Observable<any> {
-    const token = localStorage.getItem('token');  // Obtener el token del usuario desde localStorage
-    
-    if (!token) {
-      alert('No se encontró información de sesión. Por favor, inicia sesión.');
-      throw new Error('No hay token de sesión.');
-    }
-
-    // Se incluye el token en el header Authorization como Bearer token
-    const headers = { Authorization: `Bearer ${token}` };
-
-    // Hacemos la solicitud POST para crear la reserva
-    return this.http.post(`${this.apiUrl}/${inventarioId}`, {}, { headers });
-  }
-  obtenerReservas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/mis-reservas`);
-  }
-
-  // Método para cancelar una reserva
-  cancelarReserva(id: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/cancelar/${id}`);
+  // 6. Obtener las reservas del usuario actual
+  obtenerMisReservas(token: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/mis-reservas`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 }

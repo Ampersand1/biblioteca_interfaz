@@ -28,7 +28,9 @@ export class LibroService {
     });
   }
 
-
+  obtenerLibrosAleatorios(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/random`);
+  }
   // Método para actualizar un libro
   actualizarLibro(id: string, libro: any): Observable<any> {
     const token = localStorage.getItem('access-token');

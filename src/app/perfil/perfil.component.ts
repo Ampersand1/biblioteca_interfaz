@@ -32,14 +32,19 @@ export class PerfilComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Obtener los datos del usuario logueado
     const currentUser = this.autenticacionService.getCurrentUser();
+  
     if (currentUser) {
+      // Asignar los datos al modelo
       this.userData.usuario = currentUser.usuario;
       this.userData.correo = currentUser.correo;
     } else {
+      // Redirigir al login si no está logueado
       this.router.navigate(['/login']);
     }
   }
+  
 
   onSubmit() {
     if (this.userData.nuevaClave && this.userData.nuevaClave !== this.userData.confirmacionNuevaClave) {

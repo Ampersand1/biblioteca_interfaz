@@ -31,8 +31,9 @@
               "src/styles.css",
               "src/app/home/home.component.css",
               "src/app/inventario/inventario.component.css"
+              
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {
@@ -93,7 +94,7 @@
               "src/app/home/home.component.css",
               "src/app/inventario/inventario.component.css"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
           }
         }
       }
